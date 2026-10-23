@@ -54,32 +54,64 @@ function toolbar_wrap_menu_opened(_ctx) {
     // format came from Ennea Lyhsayin 
     // called a monkey patch witch is funny
 
-    mmapi_on("ui.menu_opened", function (ctx) {
-        if (!is_struct(ctx) || ctx[$ "kind"] != Menu.Toolbar) { return; }
+    // mmapi_on("ui.menu_opened", function (ctx) {
+    //     if (!is_struct(ctx) || ctx[$ "kind"] != Menu.Toolbar) { return; }
 
-        var orig_on_think = ctx.menu.on_think;
+    //     var orig_on_think = ctx.menu.on_think;
 
-        var new_scope = {
-            menu: ctx.menu,
-            orig_on_think: orig_on_think
+    //     var new_scope = {
+    //         menu: ctx.menu,
+    //         orig_on_think: orig_on_think
+    //     };
+
+    //     with new_scope {
+    //         var new_on_think = function () {
+    //             trace("-- before on think");
+
+    //             // your code before the original on_think
+
+    //             orig_on_think();
+
+    //             // your code after the original on_think
+
+    //             trace("-- after on think");
+    //         };
+
+    //         menu.on_think = new_on_think;
+    //     }
+    // });
+
+    var orig_on_think = _menu.on_think;
+
+    var new_scope = {
+        menu: _menu,
+        orig_on_think: orig_on_think
+    };
+
+    with new_scope {
+        var new_on_think = function () {
+
+            trace("-- before on think");
+
+            // your code before the original on_think
+
+            orig_on_think();
+
+            // your code after the original on_think
+
+            trace("-- after on think");
+
+            // log the vars from toolbar to track location?
+            // maybe compare them as well?
+            // to check if the page changed at the very least?
+
+            // def need page var to check witch page ari is on
+            // maybe item index for ari?
+
         };
 
-        with new_scope {
-            var new_on_think = function () {
-                trace("-- before on think");
-
-                // your code before the original on_think
-
-                orig_on_think();
-
-                // your code after the original on_think
-
-                trace("-- after on think");
-            };
-
-            menu.on_think = new_on_think;
-        }
-    });
+        menu.on_think = new_on_think;
+    }
 
 
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
