@@ -23,8 +23,15 @@ function toolbar_wrap_menu_opened(_ctx) {
     // from sopholopho code example should just check for the toolbar
     var _menu = _ctx.menu;
     if (_menu == undefined || _menu[$"type"] != Menu.Toolbar) return;
+    
+    // _menu would be toolbar now so do I just call the on_think function and edit it?
+    // seems like maybe that's what Davey did for their mod?
 
     // paste the function here? --- would that even work???
+    // use native glm logic? functions or methods?
+    // DaveyJones said to either replace or load before/after
+    // replacing makes sense... or maybe loading after?
+
 
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
     mmapi_log_flush("toolbar_wrap"); // make this one-line proof visible immediately
