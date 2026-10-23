@@ -1,9 +1,5 @@
 # mistria.toolbar-wrap
-IGNORE THE RELEASE FILE
-
 Real AI: 0
-
-This will probably only work on PC not sure though... Controllers might automatically work but I can't test that atm... Or anything really lol there's nothing to test.
 
 In short:
     This mod will hopefully make it to where the toolbar will just wrap to the first slot instead of the next inventory slot. The keybind to switch pages should still work though.
