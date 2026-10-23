@@ -19,23 +19,13 @@ function toolbar_wrap_register_callbacks() {
 }
 
 // Hook callback.
-// game.new_day is an EVENT: the return value is ignored.
-function toolbar_wrap_menu_opened(_ctx) {
-    // _ctx contains { total_days }.
-    // create_notification takes a LOCALIZATION KEY, not raw text (the engine
-    // runs it through local_get). Wrapping with ANCHOR.wrap_for_local lets raw
-    // text through - fine for a first mod. Shipped mods register real keys
-    // instead (translatable, filter-aware): see SNIPPETS.md "Show a
-    // Notification" and Mod Anatomy's "User-Facing Text".
-
-    // paste the function here?
-    // would that even work???
-
+function toolbar_wrap_menu_opened(_ctx) {     
     // from sopholopho code example should just check for the toolbar
     var _menu = _ctx.menu;
     if (_menu == undefined || _menu[$"type"] != Menu.Toolbar) return;
 
-    // create_notification(ANCHOR.wrap_for_local("Day " + string(_ctx.total_days) + " begins."));
+    // paste the function here? --- would that even work???
+
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
     mmapi_log_flush("toolbar_wrap"); // make this one-line proof visible immediately
 }
