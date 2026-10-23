@@ -47,7 +47,39 @@ function toolbar_wrap_menu_opened(_ctx) {
     // DaveyJones said to either replace or load before/after
     // replacing makes sense... or maybe loading after?
 
-    _menu.on_think = method(_menu, function(){});
+    // _menu.on_think = method(_menu, function(){
+        
+    // });
+
+    // format came from Ennea Lyhsayin 
+    // called a monkey patch witch is funny
+
+    mmapi_on("ui.menu_opened", function (ctx) {
+        if (!is_struct(ctx) || ctx[$ "kind"] != Menu.Toolbar) { return; }
+
+        var orig_on_think = ctx.menu.on_think;
+
+        var new_scope = {
+            menu: ctx.menu,
+            orig_on_think: orig_on_think
+        };
+
+        with new_scope {
+            var new_on_think = function () {
+                trace("-- before on think");
+
+                // your code before the original on_think
+
+                orig_on_think();
+
+                // your code after the original on_think
+
+                trace("-- after on think");
+            };
+
+            menu.on_think = new_on_think;
+        }
+    });
 
 
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
