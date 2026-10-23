@@ -1,3 +1,7 @@
+// toolbar wrap by eepy Kitty
+
+#macro TOOLBAR_WRAP_CONFIG_VERSION 1
+
 // This is entirely based off of sopholopho's example in the unofficial discord. Thanks for the example!!! <3
 // might have to find a dif way to hook but maybe not...
 
