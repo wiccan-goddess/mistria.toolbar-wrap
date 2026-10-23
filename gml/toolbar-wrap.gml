@@ -31,7 +31,11 @@ function toolbar_wrap_menu_opened(_ctx) {
     // paste the function here?
     // would that even work???
 
-    create_notification(ANCHOR.wrap_for_local("Day " + string(_ctx.total_days) + " begins."));
+    // from sopholopho code example should just check for the toolbar
+    var _menu = _ctx.menu;
+    if (_menu == undefined || _menu[$"type"] != Menu.Toolbar) return;
+
+    // create_notification(ANCHOR.wrap_for_local("Day " + string(_ctx.total_days) + " begins."));
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
     mmapi_log_flush("toolbar_wrap"); // make this one-line proof visible immediately
 }
