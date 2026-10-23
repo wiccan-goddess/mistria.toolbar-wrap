@@ -98,6 +98,9 @@ function toolbar_wrap_menu_opened(_ctx) {
             // def need page var to check witch page ari is on
             // maybe item index for ari?
 
+            // for my sanity if it'd be self.something in the ToolbarMenu.gml it'll be menu.something here
+            // so don't get confused if you fall asleep again...
+
             trace("-- before on think");
 
             // current values
@@ -123,9 +126,12 @@ function toolbar_wrap_menu_opened(_ctx) {
                     menu.page = old_page;
                     menu.update();
                 }
-                // else if (new_slot == old_slot){
-                //     // if they're the same then it was tabbed and shouldn't revert back
-                // }
+                else if (new_slot == 9 && old_slot == 0){
+                    // should work the other way now
+                    ARI.set_held_item_index(old_page * 10);
+                    menu.page = old_page;
+                    menu.update();
+                }
             }
 
         };
