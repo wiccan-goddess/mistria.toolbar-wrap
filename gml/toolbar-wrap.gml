@@ -11,7 +11,7 @@ function __toolbar_wrap_runtime() {
 // Hook callback registration.
 function toolbar_wrap_register_callbacks() {
     var _rt = __toolbar_wrap_runtime();
-    
+
     if (_rt.registered_hooks != undefined) {
         return;
     }
@@ -38,6 +38,10 @@ function toolbar_wrap_menu_opened(_ctx) {
     _menu.on_think (
         // add the original function?
         // and edit what i need?
+
+        // or do I need to call the full function itself?
+        // look into GML method and functions
+        // https://manual.gamemaker.io/lts/en/#t=GameMaker_Language%2FGML_Reference%2FVariable_Functions%2Fmethod.htm&rhsearch=method&rhhlterm=method
     )
 
     // paste the function here? --- would that even work???
