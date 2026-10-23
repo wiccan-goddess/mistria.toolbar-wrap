@@ -128,7 +128,8 @@ function toolbar_wrap_menu_opened(_ctx) {
                 }
                 else if (new_slot == 9 && old_slot == 0){
                     // should work the other way now
-                    ARI.set_held_item_index(old_page * 10);
+                    // SHOULD WORK NOW
+                    ARI.set_held_item_index((old_page * 10) + 9);
                     menu.page = old_page;
                     menu.update();
                 }
