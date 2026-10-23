@@ -1,4 +1,4 @@
-# mistria.-toolbar-wrap
+# mistria.toolbar-wrap
 It is lol
 
 Also ignore the release file.
