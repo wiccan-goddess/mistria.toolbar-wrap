@@ -1,4 +1,4 @@
-// My First Mod
+// My First GML Mod
 
 // Runtime state initialization.
 function __toolbar_wrap_runtime() {
@@ -27,6 +27,10 @@ function toolbar_wrap_menu_opened(_ctx) {
     // text through - fine for a first mod. Shipped mods register real keys
     // instead (translatable, filter-aware): see SNIPPETS.md "Show a
     // Notification" and Mod Anatomy's "User-Facing Text".
+
+    // paste the function here?
+    // would that even work???
+
     create_notification(ANCHOR.wrap_for_local("Day " + string(_ctx.total_days) + " begins."));
     mmapi_log_info("toolbar_wrap", "new day: " + string(_ctx.total_days));
     mmapi_log_flush("toolbar_wrap"); // make this one-line proof visible immediately
