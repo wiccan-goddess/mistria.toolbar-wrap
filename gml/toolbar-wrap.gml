@@ -11,7 +11,11 @@ function __toolbar_wrap_runtime() {
 // Hook callback registration.
 function toolbar_wrap_register_callbacks() {
     var _rt = __toolbar_wrap_runtime();
-    if (_rt.registered_hooks != undefined) return;
+    
+    if (_rt.registered_hooks != undefined) {
+        return;
+    }
+
     _rt.registered_hooks = true;
 
     mmapi_on("ui.menu_opened", toolbar_wrap_menu_opened); // EVENT hook registration
@@ -22,10 +26,19 @@ function toolbar_wrap_register_callbacks() {
 function toolbar_wrap_menu_opened(_ctx) {     
     // from sopholopho code example should just check for the toolbar
     var _menu = _ctx.menu;
-    if (_menu == undefined || _menu[$"type"] != Menu.Toolbar) return;
+
+    if (_menu == undefined || _menu[$"type"] != Menu.Toolbar) {
+        return;
+    }
     
     // _menu would be toolbar now so do I just call the on_think function and edit it?
     // seems like maybe that's what Davey did for their mod?
+
+    // something like:?
+    _menu.on_think (
+        // add the original function?
+        // and edit what i need?
+    )
 
     // paste the function here? --- would that even work???
     // use native glm logic? functions or methods?
