@@ -1,6 +1,6 @@
 name = "Toolbar Wrap"
 author = "Eepy Kitty"
-version = "1.0.0"
+version = "1.0.1"
 minInstallerVersion = "0.14.0"
 manifestVersion = 1
 requires_hooks = ["ui.menu_opened"]

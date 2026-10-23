@@ -101,8 +101,6 @@ function toolbar_wrap_menu_opened(_ctx) {
             // for my sanity if it'd be self.something in the ToolbarMenu.gml it'll be menu.something here
             // so don't get confused if you fall asleep again...
 
-            trace("-- before on think");
-
             // current values
             var old_page = menu.page;
             var old_slot = ARI.held_item_index mod 10; // stole from the toolbar
@@ -116,8 +114,6 @@ function toolbar_wrap_menu_opened(_ctx) {
             var new_slot = ARI.held_item_index mod 10;
 
             // your code after the original on_think
-
-            trace("-- after on think");
 
             if (new_page != old_page){
                 if (new_slot == 0 && old_slot == 9){
