@@ -38,16 +38,16 @@ function toolbar_wrap_menu_opened(_ctx) {
     // look into GML method and functions
     // https://manual.gamemaker.io/lts/en/#t=GameMaker_Language%2FGML_Reference%2FVariable_Functions%2Fmethod.htm&rhsearch=method&rhhlterm=method
     // syntax for ref: method(struct_ref_or_instance_id, func)
-    _menu.on_think (
-        // add the original function?
-        // and edit what i need?
-        // or do I need to call the full function itself?
-    )
 
+    // add the original function?
+    // and edit what i need?
+    // or do I need to call the full function itself?
     // paste the function here? --- would that even work???
     // use native glm logic? functions or methods?
     // DaveyJones said to either replace or load before/after
     // replacing makes sense... or maybe loading after?
+
+    _menu.on_think = method(_menu, function(){});
 
 
     mmapi_log_info("toolbar_wrap", "mod loaded yay?");
