@@ -117,12 +117,15 @@ function toolbar_wrap_menu_opened(_ctx) {
             trace("-- after on think");
 
             if (new_page != old_page){
-                if (new_slot != old_slot){
+                if (new_slot == 0 && old_slot == 9){
                     // if the slot itself changed then it probably rolled to the new tab
+                    ARI.set_held_item_index(old_page * 10);
+                    menu.page = old_page;
+                    menu.update();
                 }
-                else if (new_slot == old_slot){
-                    // if they're the same then it was tabbed and shouldn't revert back
-                }
+                // else if (new_slot == old_slot){
+                //     // if they're the same then it was tabbed and shouldn't revert back
+                // }
             }
 
         };
