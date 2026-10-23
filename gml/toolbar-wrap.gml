@@ -91,22 +91,39 @@ function toolbar_wrap_menu_opened(_ctx) {
     with new_scope {
         var new_on_think = function () {
 
-            trace("-- before on think");
-
-            // your code before the original on_think
-
-            orig_on_think();
-
-            // your code after the original on_think
-
-            trace("-- after on think");
-
             // log the vars from toolbar to track location?
             // maybe compare them as well?
             // to check if the page changed at the very least?
 
             // def need page var to check witch page ari is on
             // maybe item index for ari?
+
+            trace("-- before on think");
+
+            // current values
+            var old_page = menu.page;
+            var old_slot = ARI.held_item_index mod 10; // stole from the toolbar
+
+            // your code before the original on_think
+
+            orig_on_think();
+
+            // updated after change hopefully
+            var new_page = menu.page;
+            var new_slot = ARI.held_item_index mod 10;
+
+            // your code after the original on_think
+
+            trace("-- after on think");
+
+            if (new_page != old_page){
+                if (new_slot != old_slot){
+                    // if the slot itself changed then it probably rolled to the new tab
+                }
+                else if (new_slot == old_slot){
+                    // if they're the same then it was tabbed and shouldn't revert back
+                }
+            }
 
         };
 
