@@ -5,3 +5,6 @@ Version 1.0.0 // Initial Release
 
 Version 1.0.1 // Fixes
     - Removed traces
+
+Version 1.0.2 // Cleanup
+    - Cleaned up my mess of notes

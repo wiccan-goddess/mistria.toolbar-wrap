@@ -1,0 +1,72 @@
+name: Upload To Nexus
+
+# This means that this workflow will only happen when you create a new release in the "Releases" section of your
+# repository
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+
+# This allows this workflow to upload your mod to the Release. If you don't want that, you can remove this bit as well
+# as the "Upload mod to release" step
+permissions:
+  contents: write
+
+jobs:
+  Upload:
+    runs-on: ubuntu-latest
+    # This should match the environment name you've defined in "Settings -> Environments"
+    environment: NEXUS_UPLOAD
+
+    steps:
+      # This checks out the repository to the current directory
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # This uses a tool called `jq` to look up the version of your mod from the `manifest.json` file, and puts it in
+      # {{ env.VERSION }} to send to Nexus later
+      # changed to use grep because I'm using a toml file
+      - name: Extract version from manifest.toml
+        run: |
+          VERSION=$(grep -Po '^version = "\K[^"]*' manifest.toml)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      
+      # Uses awk to grab everything beneath the current version heading until the next version heading or end of file
+      - name: Extract changelog for current version
+        run: |
+          CHANGELOG=$(awk -v ver="Version ${{ env.VERSION }}" '
+            index($0, ver) == 1 { flag=1; next }
+            /^Version / && flag { exit }
+            flag { print }
+          ' CHANGELOG.md)
+          
+          # Safely write the multi-line string to GitHub Actions environments
+          DELIMITER=$(head -c 10 /dev/urandom | base64)
+          echo "CHANGELOG<<$DELIMITER" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "$DELIMITER" >> $GITHUB_ENV
+
+      # This is the step that zips up the mod for uploading
+      - name: Zip mod
+        run: zip -r mod.zip ./*
+
+      # Here we upload our file to Nexus
+      - name: Upload to Nexus
+        uses: Nexus-Mods/upload-action@v1.0.0-beta.4
+        with:
+          api_key: ${{ secrets.NEXUS_TOKEN }}
+          file_group_id: "your_file_group_id"
+          mod_id: ""
+          filename: mod.zip
+          version: ${{ env.VERSION }}
+          changelog: ${{ env.CHANGELOG }}
+          display_name: "Your Mod Name"
+
+      # This is the step that also uploads the zip to the Release that we create
+      - name: Upload mod to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          gh release upload ${{ github.ref_name }} mod.zip
