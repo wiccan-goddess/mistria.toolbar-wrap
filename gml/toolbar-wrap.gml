@@ -78,5 +78,5 @@ function toolbar_wrap_menu_opened(_ctx) {
 }
 
 // MMAPI mod declaration and hook registration.
-mmapi_mod_declare("toolbar_wrap", "1.0.0");
+mmapi_mod_declare("toolbar_wrap", "1.0.2");
 toolbar_wrap_register_callbacks();
